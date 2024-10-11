@@ -13,15 +13,21 @@ let dataCollection = null;
 // Initialize the data by reading from JSON files
 function initialize() {
     return new Promise((resolve, reject) => {
+        // Use __dirname to get the absolute path of the data directory
+        const studentsFilePath = path.join(__dirname, 'data', 'students.json');
+        const coursesFilePath = path.join(__dirname, 'data', 'courses.json');
+
         // Read students.json file
-        fs.readFile('./data/students.json', 'utf8', (err, studentDataFromFile) => {
+        fs.readFile(studentsFilePath, 'utf8', (err, studentDataFromFile) => {
             if (err) {
-                console.log(err);
+                console.error("Error reading students.json:", err);
                 return reject("Unable to read students.json");
             }
+
             // Read courses.json file
-            fs.readFile('./data/courses.json', 'utf8', (err, courseDataFromFile) => {
+            fs.readFile(coursesFilePath, 'utf8', (err, courseDataFromFile) => {
                 if (err) {
+                    console.error("Error reading courses.json:", err);
                     return reject("Unable to read courses.json");
                 }
 
