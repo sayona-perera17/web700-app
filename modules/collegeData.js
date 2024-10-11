@@ -14,13 +14,13 @@ let dataCollection = null;
 function initialize() {
     return new Promise((resolve, reject) => {
         // Read students.json file
-        fs.readFile('/data/students.json', 'utf8', (err, studentDataFromFile) => {
+        fs.readFile('./data/students.json', 'utf8', (err, studentDataFromFile) => {
             if (err) {
                 console.log(err);
                 return reject("Unable to read students.json");
             }
             // Read courses.json file
-            fs.readFile('/data/courses.json', 'utf8', (err, courseDataFromFile) => {
+            fs.readFile('./data/courses.json', 'utf8', (err, courseDataFromFile) => {
                 if (err) {
                     return reject("Unable to read courses.json");
                 }
