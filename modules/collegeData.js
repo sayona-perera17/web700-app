@@ -19,6 +19,7 @@ function initialize() {
         // Read students.json file
         fs.readFile('web700-app/public/students.json', 'utf8', (err, studentDataFromFile) => {
             if (err) {
+                console.log("abbc");
                 console.error("Error reading students.json:", err);
                 return reject("Unable to read students.json");
             }
