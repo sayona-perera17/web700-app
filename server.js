@@ -74,9 +74,8 @@ app.use((req, res) => {
 
 // Initialize and start server only if initialization is successful
 collegeData.initialize().then(() => {
-    app.listen(HTTP_PORT, () => {
-        console.log("Server listening on port: " + HTTP_PORT);
-    });
+    module.exports = app;
+
 }).catch((err) => {
     console.log("Unable to start server: " + err);
 });
