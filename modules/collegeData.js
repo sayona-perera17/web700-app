@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = require('path'); // You forgot to import the path module
+const path = require('path'); 
 
 // Define the Data class to store student and course data
 class Data {
