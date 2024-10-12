@@ -8,12 +8,10 @@
 *
 ********************************************************************************/ 
 
-
 const express = require('express');
 const path = require('path');
 const collegeData = require('./modules/collegeData');
 
-const HTTP_PORT = process.env.PORT || 8080;
 const app = express();
 
 // Route for home page
@@ -72,10 +70,22 @@ app.use((req, res) => {
     res.status(404).send("Page Not Found");
 });
 
-// Initialize and start server only if initialization is successful
-collegeData.initialize().then(() => {
-    module.exports = app;
+// Initialize the data before exporting the app
+module.exports = (req, res) => {
+    collegeData.initialize().then(() => {
+        app(req, res);  // Handle the request using Express after initialization
+    }).catch((err) => {
+        res.status(500).send("Unable to initialize the server: " + err);
+    });
+};
 
+
+
+// Initialize and start server only if initialization is successful
+/*collegeData.initialize().then(() => {
+    app.listen(HTTP_PORT, () => {
+        console.log("Server listening on port: " + HTTP_PORT);
+    });
 }).catch((err) => {
     console.log("Unable to start server: " + err);
-});
+});*/
